@@ -5,6 +5,8 @@
  */
 package Object;
 
+import Object.EnumAndConstant.Person;
+
 /**
  *
  * @author DAT

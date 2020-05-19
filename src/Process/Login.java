@@ -37,8 +37,8 @@ public class Login extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        accountLbl = new javax.swing.JLabel();
+        passwordLbl = new javax.swing.JLabel();
         txtTaiKhoan = new javax.swing.JTextField();
         txtMatKhau = new javax.swing.JPasswordField();
         btLogin = new javax.swing.JButton();
@@ -52,11 +52,21 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setForeground(new java.awt.Color(51, 255, 51));
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel1.setText("Account:");
+        accountLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        accountLbl.setText("Account:");
+        accountLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                accountLblMouseClicked(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Password:");
+        passwordLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        passwordLbl.setText("Password:");
+        passwordLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                passwordLblMouseClicked(evt);
+            }
+        });
 
         txtTaiKhoan.setEnabled(false);
         txtTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -120,12 +130,12 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbConnect)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(accountLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(78, 78, 78)
                                 .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
                                 .addGap(75, 75, 75)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,12 +150,12 @@ public class Login extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(accountLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accountRole, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,6 +237,18 @@ public class Login extends javax.swing.JFrame {
         txtMatKhau.requestFocus();
     }//GEN-LAST:event_txtMatKhauMouseClicked
 
+    private void accountLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountLblMouseClicked
+        // TODO add your handling code here:
+        txtTaiKhoan.setEnabled(true);
+        txtTaiKhoan.requestFocus();
+    }//GEN-LAST:event_accountLblMouseClicked
+
+    private void passwordLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordLblMouseClicked
+        // TODO add your handling code here:
+        txtMatKhau.setEnabled(true);
+        txtMatKhau.requestFocus();
+    }//GEN-LAST:event_passwordLblMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -272,16 +294,16 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel accountLbl;
     public static javax.swing.JComboBox<String> accountRole;
     private javax.swing.JButton btExit;
     private javax.swing.JButton btLogin;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbConnect;
+    private javax.swing.JLabel passwordLbl;
     private javax.swing.JPasswordField txtMatKhau;
     private javax.swing.JTextField txtTaiKhoan;
     // End of variables declaration//GEN-END:variables

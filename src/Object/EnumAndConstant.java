@@ -53,17 +53,58 @@ public class EnumAndConstant {
     }
 
     public class Person {
+    private String name;
+    private String address;
+    private String phoneNumber;
 
-        private String name;
-        private Address address;
-        private String email;
-        private String phone;
+    public Person(String name, String address, String phoneNumber) {
+        this.name = name;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
     }
+
+    public Person() {
+    }
+
+    
+    
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    
+}
 
     public class Constants {
 
         public static final int MAX_BOOKS_ISSUED_TO_A_USER = 5;
         public static final int MAX_LENDING_DAYS = 10;
+    }
+    
+    public enum Roles {
+        ADMIN,
+        LIBRARIAN,
+        MEMBER
     }
 
 }
