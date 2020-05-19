@@ -13,6 +13,8 @@ import Object.Admin;
 import Object.Member;
 import javax.swing.JOptionPane;
 import Control.ConnectDB;
+import Control.UserControl;
+import Object.User;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
@@ -266,21 +268,21 @@ public class Login extends javax.swing.JFrame {
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         // TODO add your handling code here:
-        String account = txtAccount.getText();
+        String user = txtAccount.getText();
         String password = txtPassword.getText();
         String role = accountRole.getSelectedItem().toString();
 
-        if (account.isEmpty()
+        if (user.isEmpty()
                 || password.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bạn chưa nhập đủ thông tin", "Thông báo", 1);
         } else {
-            Account acc = AccountControl.login(account, password, role);
+            User urs = UserControl.login(user, password, role);
             try {
-                if (acc != null && role == "MEMBER") {
+                if (urs != null && role == "MEMBER") {
                     System.out.println("Member has logined");
-                } else if (acc != null && role == "LIBRARIAN") {
+                } else if (urs != null && role == "LIBRARIAN") {
                     System.out.println("Librarian has logined");
-                } else if (acc != null && role == "ADMIN") {
+                } else if (urs != null && role == "ADMIN") {
                     AdminForm adf = new AdminForm();
                     adf.setVisible(true);
                     dispose();

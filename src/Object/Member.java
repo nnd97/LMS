@@ -37,6 +37,4 @@ public class Member extends Account {
     public void setPerson(Person person) {
         this.person = person;
     }
-
-    
 }
