@@ -64,16 +64,11 @@ public class Login extends javax.swing.JFrame {
                 txtTaiKhoanMouseClicked(evt);
             }
         });
-        txtTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTaiKhoanActionPerformed(evt);
-            }
-        });
 
         txtMatKhau.setEnabled(false);
-        txtMatKhau.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatKhauActionPerformed(evt);
+        txtMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtMatKhauMouseClicked(evt);
             }
         });
 
@@ -155,7 +150,7 @@ public class Login extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accountRole, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btExit, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
@@ -218,23 +213,19 @@ public class Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btExitActionPerformed
 
-    private void txtTaiKhoanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTaiKhoanActionPerformed
-        txtTaiKhoan.setEnabled(true);
-        txtMatKhau.setEnabled(true);
-
-    }//GEN-LAST:event_txtTaiKhoanActionPerformed
-
-    private void txtMatKhauActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatKhauActionPerformed
-
-        txtTaiKhoan.setEnabled(true);
-        txtMatKhau.setEnabled(true);
-    }//GEN-LAST:event_txtMatKhauActionPerformed
-
     private void txtTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTaiKhoanMouseClicked
         // TODO add your handling code here:
         txtTaiKhoan.setEnabled(true);
+        txtTaiKhoan.requestFocus();
         txtMatKhau.setEnabled(true);
     }//GEN-LAST:event_txtTaiKhoanMouseClicked
+
+    private void txtMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMouseClicked
+        // TODO add your handling code here:
+        txtMatKhau.setEnabled(true);
+        txtTaiKhoan.setEnabled(true);
+        txtMatKhau.requestFocus();
+    }//GEN-LAST:event_txtMatKhauMouseClicked
 
     /**
      * @param args the command line arguments
