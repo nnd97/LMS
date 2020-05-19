@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.20, for Win64 (x86_64)
 --
--- Host: localhost    Database: db_lms
+-- Host: localhost    Database: lms
 -- ------------------------------------------------------
 -- Server version	5.7.29-log
 
@@ -37,7 +37,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
-INSERT INTO `account` VALUES ('admin','admin','ADMIN');
+INSERT INTO `account` VALUES ('admin','admin','ADMIN'),('nnd97','1234','MEMBER');
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -49,12 +49,15 @@ DROP TABLE IF EXISTS `admin`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `admin` (
-  `id` varchar(50) NOT NULL,
-  `password` varchar(45) DEFAULT NULL,
-  `name` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `account_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `account_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`,`account_id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `account_id_UNIQUE` (`account_id`),
+  KEY `fk_admin_account1_idx` (`account_id`),
+  CONSTRAINT `fk_admin_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -63,7 +66,7 @@ CREATE TABLE `admin` (
 
 LOCK TABLES `admin` WRITE;
 /*!40000 ALTER TABLE `admin` DISABLE KEYS */;
-INSERT INTO `admin` VALUES ('admin','admin','Dat');
+INSERT INTO `admin` VALUES (1,'Dat','admin'),(2,'Dat','nnd97');
 /*!40000 ALTER TABLE `admin` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -154,17 +157,19 @@ DROP TABLE IF EXISTS `book_item`;
 CREATE TABLE `book_item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `numbers_of_page` int(11) DEFAULT NULL,
-  `number` varchar(45) DEFAULT NULL,
   `status` varchar(45) DEFAULT NULL,
-  `type` varchar(45) DEFAULT NULL,
+  `subject` varchar(45) DEFAULT NULL,
   `price` varchar(45) DEFAULT NULL,
   `borrowed` datetime DEFAULT NULL,
   `due_date` datetime DEFAULT NULL,
   `publication_date` datetime DEFAULT NULL,
   `book_lending_id` int(11) NOT NULL,
+  `book_id` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_book_item_book_lending1_idx` (`book_lending_id`),
+  KEY `fk_book_item_book1_idx` (`book_id`),
+  CONSTRAINT `fk_book_item_book1` FOREIGN KEY (`book_id`) REFERENCES `book` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_book_item_book_lending1` FOREIGN KEY (`book_lending_id`) REFERENCES `book_lending` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -190,14 +195,11 @@ CREATE TABLE `book_lending` (
   `creation_date` datetime NOT NULL,
   `due_time` datetime NOT NULL,
   `return_date` datetime DEFAULT NULL,
-  `member_id` varchar(20) NOT NULL,
-  `book_item_id` int(11) NOT NULL,
+  `account_id` varchar(45) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  KEY `fk_book_lending_member1_idx` (`member_id`),
-  KEY `fk_book_lending_book_item1_idx` (`book_item_id`),
-  CONSTRAINT `fk_book_lending_book_item1` FOREIGN KEY (`book_item_id`) REFERENCES `book_item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  CONSTRAINT `fk_book_lending_member1` FOREIGN KEY (`member_id`) REFERENCES `member` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
+  KEY `fk_book_lending_account1_idx` (`account_id`),
+  CONSTRAINT `fk_book_lending_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -218,13 +220,16 @@ DROP TABLE IF EXISTS `librarian`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `librarian` (
-  `id` varchar(45) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `password` varchar(45) NOT NULL,
   `phone_number` varchar(20) NOT NULL,
   `address` longtext,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
+  `account_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`,`account_id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `account_id_UNIQUE` (`account_id`),
+  KEY `fk_librarian_account1_idx` (`account_id`),
+  CONSTRAINT `fk_librarian_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -245,15 +250,17 @@ DROP TABLE IF EXISTS `member`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `member` (
-  `id` varchar(20) NOT NULL,
-  `password` varchar(45) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(45) NOT NULL,
-  `birth` datetime DEFAULT NULL,
+  `phone_number` varchar(45) NOT NULL,
   `address` varchar(200) DEFAULT NULL,
-  `phonenumber` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `account_id` varchar(45) NOT NULL,
+  PRIMARY KEY (`id`,`account_id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `account_id_UNIQUE` (`account_id`),
+  KEY `fk_member_account1_idx` (`account_id`),
+  CONSTRAINT `fk_member_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -262,6 +269,7 @@ CREATE TABLE `member` (
 
 LOCK TABLES `member` WRITE;
 /*!40000 ALTER TABLE `member` DISABLE KEYS */;
+INSERT INTO `member` VALUES (1,'dat','0869878897','258 giai phong','nnd97');
 /*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -298,4 +306,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-19 13:08:08
+-- Dump completed on 2020-05-19 19:03:07
