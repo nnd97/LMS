@@ -40,7 +40,7 @@ public class LibrarianControl {
         try {
             ps = ConnectDB.getConnect().prepareStatement(sql_account);
 
-            ps.setString(1, mb.getId());
+            ps.setString(1, mb.getAccount());
             ps.setString(2, mb.getPassword());
             ps.setString(3, mb.getRole());
             ps.execute();

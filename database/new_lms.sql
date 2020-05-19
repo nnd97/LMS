@@ -16,36 +16,6 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `account`
---
-
-DROP TABLE IF EXISTS `account`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `account` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `account` varchar(45) NOT NULL,
-  `password` varchar(100) NOT NULL,
-  `role` varchar(45) DEFAULT 'MEMBER',
-  `name` varchar(45) DEFAULT 'Member',
-  `phone_number` varchar(45) NOT NULL,
-  `address` longtext,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `account_UNIQUE` (`account`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `account`
---
-
-LOCK TABLES `account` WRITE;
-/*!40000 ALTER TABLE `account` DISABLE KEYS */;
-/*!40000 ALTER TABLE `account` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `author`
 --
 
@@ -173,7 +143,7 @@ CREATE TABLE `book_lending` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   KEY `fk_book_lending_book_item1_idx` (`book_item_id`),
   KEY `fk_book_lending_account1_idx` (`account_id`),
-  CONSTRAINT `fk_book_lending_account1` FOREIGN KEY (`account_id`) REFERENCES `account` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  CONSTRAINT `fk_book_lending_account1` FOREIGN KEY (`account_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `fk_book_lending_book_item` FOREIGN KEY (`book_item_id`) REFERENCES `book_item` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -185,33 +155,6 @@ CREATE TABLE `book_lending` (
 LOCK TABLES `book_lending` WRITE;
 /*!40000 ALTER TABLE `book_lending` DISABLE KEYS */;
 /*!40000 ALTER TABLE `book_lending` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `member`
---
-
-DROP TABLE IF EXISTS `member`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `member` (
-  `id` varchar(20) NOT NULL,
-  `password` varchar(45) NOT NULL,
-  `name` varchar(45) NOT NULL,
-  `address` longtext,
-  `phonee_number` varchar(45) NOT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id_UNIQUE` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `member`
---
-
-LOCK TABLES `member` WRITE;
-/*!40000 ALTER TABLE `member` DISABLE KEYS */;
-/*!40000 ALTER TABLE `member` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -237,6 +180,36 @@ LOCK TABLES `rack` WRITE;
 /*!40000 ALTER TABLE `rack` DISABLE KEYS */;
 /*!40000 ALTER TABLE `rack` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
+DROP TABLE IF EXISTS `user`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user` varchar(45) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `role` varchar(45) DEFAULT 'MEMBER',
+  `name` varchar(45) DEFAULT 'Member',
+  `phone_number` varchar(45) NOT NULL,
+  `address` longtext,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `account_UNIQUE` (`user`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `user`
+--
+
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -247,4 +220,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-05-19 23:45:46
+-- Dump completed on 2020-05-20  0:26:24
