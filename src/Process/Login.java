@@ -12,7 +12,7 @@ import Object.Account;
 import Object.Admin;
 import Object.Member;
 import javax.swing.JOptionPane;
-import lms.ConnectDB;
+import Control.ConnectDB;
 
 /**
  *
