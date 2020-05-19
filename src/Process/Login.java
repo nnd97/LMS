@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
         txtPassword.setEnabled(true);
         txtAccount.setEnabled(true);
         this.lbConnect.setText(ConnectDB.testConnect());
-        this.setLocation(300, 200);
+        this.setLocation(400, 200);
     }
 
 

@@ -23,7 +23,7 @@ public class AdminUpdate extends javax.swing.JFrame {
      */
     public AdminUpdate() {
         initComponents();
-
+        this.setLocation(400, 200);
     }
 
         

@@ -15,7 +15,7 @@ public class AdminForm extends javax.swing.JFrame {
      * Creates new form test
      */
     public AdminForm() {
-        this.setLocation(400, 300);
+        this.setLocation(400, 200);
         initComponents();
     }
 
