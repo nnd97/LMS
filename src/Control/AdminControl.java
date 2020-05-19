@@ -58,7 +58,7 @@ public class AdminControl {
         try {
             ps = ConnectDB.getConnect().prepareStatement(sql_account);
 
-            ps.setString(1, lib.getId());
+            ps.setString(1, lib.getAccount());
             ps.setString(2, lib.getPassword());
             ps.setString(3, lib.getRole());
             ps.execute();
