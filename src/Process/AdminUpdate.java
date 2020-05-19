@@ -7,6 +7,8 @@ package Process;
 
 import Control.AdminControl;
 import Control.LibrarianControl;
+import Object.EnumAndConstant;
+import Object.Person;
 import Object.Librarian;
 import javax.swing.JOptionPane;
 
@@ -24,6 +26,8 @@ public class AdminUpdate extends javax.swing.JFrame {
 
     }
 
+        
+        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -68,9 +72,9 @@ public class AdminUpdate extends javax.swing.JFrame {
                 btnAddMouseClicked(evt);
             }
         });
-        btnAdd.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAddActionPerformed(evt);
+        btnAdd.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                btnAddKeyPressed(evt);
             }
         });
 
@@ -159,32 +163,40 @@ public class AdminUpdate extends javax.swing.JFrame {
 
     private void btnAddMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAddMouseClicked
         // TODO add your handling code here:
+        String account = txtAccount.getText();
+        String password = txtPassword.getText();
+        String name = txtName.getText();
+        String role = cbbRole.getSelectedItem().toString();
+        String phone = txtPhone.getText();
+        String address = txtAdress.getText();
+        
+        Person prs = new Person(name, address, phone);
+        
+        System.out.println(account+" "+password+" "+name+" "+role+" "+phone+" "+address);
+        Librarian lib = new Librarian(prs, account, password, role);
 
-    }//GEN-LAST:event_btnAddMouseClicked
 
-    private void btnAddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddActionPerformed
-        // TODO add your handling code here:
-        Librarian lib = new Librarian();
-        lib.setAccount(this.txtAccount.getText());
-        lib.setPassword(this.txtPassword.getText());
-        lib.person.setName(this.txtName.getText());
-        lib.setRole(this.cbbRole.getSelectedItem().toString());
-        lib.person.setPhoneNumber(this.txtPhone.getText());
-        lib.person.setAddress(this.txtAdress.getText());
-        System.out.println(lib.getAccount());
-        if (lib.getAccount().isEmpty() || lib.getPassword().isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Bạn chưa nhập đủ thông tin", "Thông báo", 1);
+        if (
+                lib.getAccount().isEmpty() || 
+                lib.getPassword().isEmpty()||
+                lib.getRole().isEmpty()|| 
+                lib.person.getName().isEmpty()||
+                lib.person.getPhoneNumber().isEmpty()
+            ) {
+            JOptionPane.showMessageDialog(null, "Bạn chưa nhập đủ thông tin", "Message", 1);
         } else {
             boolean hasAddLibrarian = AdminControl.addLibrarian(lib);
             if (hasAddLibrarian) {
-                JOptionPane.showMessageDialog(null, "Adding librarian has successful!", "Notice", 1);
+                JOptionPane.showMessageDialog(null, "Adding librarian has successful!", "Message", 1);
             } else {
-                JOptionPane.showMessageDialog(null, "Adding librarian has failed!", "Notice", 1);
-            } 
+                JOptionPane.showMessageDialog(null, "Adding librarian has failed!", "Message", 1);
+            }
         }
+    }//GEN-LAST:event_btnAddMouseClicked
 
-
-    }//GEN-LAST:event_btnAddActionPerformed
+    private void btnAddKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnAddKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAddKeyPressed
 
     /**
      * @param args the command line arguments

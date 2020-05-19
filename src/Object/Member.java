@@ -5,7 +5,7 @@
  */
 package Object;
 
-import Object.EnumAndConstant.Person;
+import Object.Person;
 
 /**
  *
