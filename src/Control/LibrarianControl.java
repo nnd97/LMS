@@ -13,7 +13,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-
 /**
  *
  * @author DAT
@@ -24,8 +23,9 @@ public class LibrarianControl {
     public static ResultSet rs;
 
     public static boolean addMember(Member mb) {
-        String sql_member = "insert into member values(?,?,?)";
         String sql_account = "insert into account values(?,?,?)";
+        String sql_member = "insert into member values(?,?,?)";
+
         try {
             ps = ConnectDB.getConnect().prepareStatement(sql_member);
 

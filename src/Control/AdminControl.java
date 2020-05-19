@@ -13,6 +13,11 @@ import Object.EnumAndConstant.*;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -47,19 +52,9 @@ public class AdminControl {
     }
 
     public static boolean addLibrarian(Librarian lib) {
-        String sql_librarian = "insert into librarian values(?,?,?)";
         String sql_account = "insert into account values(?,?,?)";
-        try {
-            ps = ConnectDB.getConnect().prepareStatement(sql_librarian);
-
-            ps.setString(1, lib.person.getName());
-            ps.setString(2, lib.person.getAddress());
-            ps.setString(3, lib.person.getPhoneNumber());
-            ps.execute();
-        } catch (HeadlessException | SQLException e) {
-            return false;
-        }
-
+        String sql_librarian = "insert into librarian (name, phone_number, address,account_id) values(?,?,?,?)";
+        
         try {
             ps = ConnectDB.getConnect().prepareStatement(sql_account);
 
@@ -67,13 +62,44 @@ public class AdminControl {
             ps.setString(2, lib.getPassword());
             ps.setString(3, lib.getRole());
             ps.execute();
-            return true;
+            System.out.println("insert account success");
         } catch (HeadlessException | SQLException e) {
+            System.out.println("insert account fail");
+            return false;
+        }
+
+        try {
+            ps = ConnectDB.getConnect().prepareStatement(sql_librarian);
+
+            
+            ps.setString(1, lib.person.getName());
+            ps.setString(3, lib.person.getAddress());
+            ps.setString(2, lib.person.getPhoneNumber());
+            ps.setString(4, lib.getAccount());
+            ps.execute();
+            System.out.println("insert lib success");
+            return true;
+            
+        } catch (HeadlessException | SQLException e) {
+            System.out.println("insert lib fail");
             return false;
         }
 
     }
 
+    public static void listLibrarian(JTable jtb){
+        try {
+            
+            ps = ConnectDB.getConnect().prepareStatement("SELECT * FROM librarian");
+            ResultSet rs = ps.executeQuery();
+            jtb.setModel((TableModel) rs);
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminControl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }
+    
     public static boolean deleteLibrarian(Librarian lib) {
         try {
             ps = ConnectDB.getConnect().prepareStatement("DELETE FROM librarian WHERE id = ?");

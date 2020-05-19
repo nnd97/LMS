@@ -27,17 +27,7 @@ public class Librarian extends Account {
 
     public String getId() {
         return id;
-    }
-
-    public Person getPerson() {
-        return person;
-    }
-
-    public void setPerson(Person person) {
-        this.person = person;
-    }
-
-    
+    } 
     
    public void addLibrarian(Member mb) {
         if (LibrarianControl.addMember(mb)) {

@@ -22,6 +22,8 @@ public class Login extends javax.swing.JFrame {
 
     public Login() {
         initComponents();
+        txtPassword.setEnabled(true);
+        txtAccount.setEnabled(true);
         this.lbConnect.setText(ConnectDB.testConnect());
         this.setLocation(300, 200);
     }
@@ -37,10 +39,10 @@ public class Login extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        accountLbl = new javax.swing.JLabel();
-        passwordLbl = new javax.swing.JLabel();
-        txtTaiKhoan = new javax.swing.JTextField();
-        txtMatKhau = new javax.swing.JPasswordField();
+        lblAccount = new javax.swing.JLabel();
+        lblPassword = new javax.swing.JLabel();
+        txtAccount = new javax.swing.JTextField();
+        txtPassword = new javax.swing.JPasswordField();
         btLogin = new javax.swing.JButton();
         btExit = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -52,33 +54,33 @@ public class Login extends javax.swing.JFrame {
 
         jPanel1.setForeground(new java.awt.Color(51, 255, 51));
 
-        accountLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        accountLbl.setText("Account:");
-        accountLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblAccount.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblAccount.setText("Account:");
+        lblAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                accountLblMouseClicked(evt);
+                lblAccountMouseClicked(evt);
             }
         });
 
-        passwordLbl.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        passwordLbl.setText("Password:");
-        passwordLbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        lblPassword.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        lblPassword.setText("Password:");
+        lblPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                passwordLblMouseClicked(evt);
+                lblPasswordMouseClicked(evt);
             }
         });
 
-        txtTaiKhoan.setEnabled(false);
-        txtTaiKhoan.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtAccount.setEnabled(false);
+        txtAccount.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtTaiKhoanMouseClicked(evt);
+                txtAccountMouseClicked(evt);
             }
         });
 
-        txtMatKhau.setEnabled(false);
-        txtMatKhau.addMouseListener(new java.awt.event.MouseAdapter() {
+        txtPassword.setEnabled(false);
+        txtPassword.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                txtMatKhauMouseClicked(evt);
+                txtPasswordMouseClicked(evt);
             }
         });
 
@@ -99,7 +101,7 @@ public class Login extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 51, 0));
+        jLabel3.setForeground(new java.awt.Color(0, 153, 255));
         jLabel3.setText("Library Management System");
 
         lbConnect.setText("Tình trạng kết nối");
@@ -115,10 +117,6 @@ public class Login extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(243, 243, 243)
-                .addComponent(jLabel3)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(123, 123, 123)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -130,40 +128,44 @@ public class Login extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lbConnect)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(accountLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(78, 78, 78)
-                                .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel4))
                                 .addGap(75, 75, 75)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(accountRole, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 329, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(105, Short.MAX_VALUE))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addGap(228, 228, 228))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(26, 26, 26)
                 .addComponent(jLabel3)
-                .addGap(33, 33, 33)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(accountLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtTaiKhoan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtAccount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtMatKhau, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(passwordLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(accountRole, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 111, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btExit, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE))
+                    .addComponent(btExit, javax.swing.GroupLayout.DEFAULT_SIZE, 63, Short.MAX_VALUE))
                 .addGap(69, 69, 69)
                 .addComponent(lbConnect))
         );
@@ -179,10 +181,7 @@ public class Login extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -190,8 +189,8 @@ public class Login extends javax.swing.JFrame {
 
     private void btLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLoginActionPerformed
         // TODO add your handling code here:
-        String account = this.txtTaiKhoan.getText();
-        String password = this.txtMatKhau.getText();
+        String account = this.txtAccount.getText();
+        String password = this.txtPassword.getText();
         String role = accountRole.getSelectedItem().toString();
 
         if (account.isEmpty()
@@ -223,31 +222,29 @@ public class Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btExitActionPerformed
 
-    private void txtTaiKhoanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtTaiKhoanMouseClicked
+    private void txtAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtAccountMouseClicked
         // TODO add your handling code here:
-        txtTaiKhoan.setEnabled(true);
-        txtTaiKhoan.requestFocus();
-        txtMatKhau.setEnabled(true);
-    }//GEN-LAST:event_txtTaiKhoanMouseClicked
 
-    private void txtMatKhauMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtMatKhauMouseClicked
-        // TODO add your handling code here:
-        txtMatKhau.setEnabled(true);
-        txtTaiKhoan.setEnabled(true);
-        txtMatKhau.requestFocus();
-    }//GEN-LAST:event_txtMatKhauMouseClicked
+//        txtAccount.requestFocus();
 
-    private void accountLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_accountLblMouseClicked
-        // TODO add your handling code here:
-        txtTaiKhoan.setEnabled(true);
-        txtTaiKhoan.requestFocus();
-    }//GEN-LAST:event_accountLblMouseClicked
+    }//GEN-LAST:event_txtAccountMouseClicked
 
-    private void passwordLblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_passwordLblMouseClicked
+    private void txtPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtPasswordMouseClicked
         // TODO add your handling code here:
-        txtMatKhau.setEnabled(true);
-        txtMatKhau.requestFocus();
-    }//GEN-LAST:event_passwordLblMouseClicked
+//        txtPassword.requestFocus();
+    }//GEN-LAST:event_txtPasswordMouseClicked
+
+    private void lblAccountMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblAccountMouseClicked
+        // TODO add your handling code here:
+
+        txtAccount.requestFocus();
+    }//GEN-LAST:event_lblAccountMouseClicked
+
+    private void lblPasswordMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblPasswordMouseClicked
+        // TODO add your handling code here:
+
+        txtPassword.requestFocus();
+    }//GEN-LAST:event_lblPasswordMouseClicked
 
     /**
      * @param args the command line arguments
@@ -294,7 +291,6 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel accountLbl;
     public static javax.swing.JComboBox<String> accountRole;
     private javax.swing.JButton btExit;
     private javax.swing.JButton btLogin;
@@ -303,8 +299,9 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lbConnect;
-    private javax.swing.JLabel passwordLbl;
-    private javax.swing.JPasswordField txtMatKhau;
-    private javax.swing.JTextField txtTaiKhoan;
+    private javax.swing.JLabel lblAccount;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JTextField txtAccount;
+    private javax.swing.JPasswordField txtPassword;
     // End of variables declaration//GEN-END:variables
 }
